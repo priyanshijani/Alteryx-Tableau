@@ -4,16 +4,16 @@ Tick boxes as you go (`[ ]` → `[x]`). GitHub renders them as a progress list.
 **Save evidence** where noted: a screenshot in `images/screenshots/` or a file in the repo.
 Expected numbers for every check are in `docs/PLAN.md` → section 10.
 
-Progress: Phase 0 ☐ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+Progress: Phase 0 ✅ · 1 🟡 · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
 
 ---
 
 ## Phase 0 — Setup (Day 1)
 
 - [x] Create the folder `D:\Learnings\Alteryx-Tableau` and unzip the project files into it.
-- [ ] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends 24 october 2026.
-- [ ] Install **Tableau Desktop Free Edition** (tableau.com → Products → Tableau Desktop → Free Edition).
-- [ ] Install **Git for Windows** (git-scm.com) and create a free **GitHub** account.
+- [x] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends 24 october 2026.
+- [x] Install **Tableau Desktop Free Edition** (tableau.com → Products → Tableau Desktop → Free Edition).
+- [x] Install **Git for Windows** (git-scm.com) and create a free **GitHub** account.
 - [x] In Git Bash:
   ```bash
   cd /d/Learnings/Alteryx-Tableau
@@ -45,18 +45,18 @@ Goal: find the problems *before* fixing them. Profiling is the step most beginne
 Why a batch macro? A wildcard Input (`opps_*.csv`) fails or scrambles columns when files have different schemas. The macro reads **one file at a time**, renames its columns to a standard set, and then stacks the results.
 
 **Build the macro `alteryx/macros/mc_ingest_crm_extract.yxmc`:**
-- [ ] New workflow. Add **Input Data** pointing at any one opportunities CSV (UTF-8, *Output File Name as Field → File Name only*).
-- [ ] Add **Input Data** for `data/reference/crm_field_mapping_v1_v2.csv`.
+- [x] New workflow. Add **Input Data** pointing at any one opportunities CSV (UTF-8, *Output File Name as Field → File Name only*).
+- [x] Add **Input Data** for `data/reference/crm_field_mapping_v1_v2.csv`.
 - [ ] Add **Dynamic Rename**: left = the opportunities file, right = the mapping file. Mode **Take Field Names from Right Input Rows**, Old = `source_field`, New = `standard_field`.
 - [ ] Add a **Select** to rename `FileName` to `source_file`, and make every field `V_WString` (so all iterations stack cleanly).
-- [ ] Add **Macro Output** (Interface palette).
-- [ ] Add **Control Parameter** (Interface palette, label it `File Path`). Connect it to the file Input tool; an **Action** tool appears. Configure the Action: *Update Input Data value → replace the full file path*.
-- [ ] Workflow Configuration → Workflow tab → type **Batch Macro**. Save as `.yxmc`.
-- [ ] Interface Designer → Properties → *Output Mode*: **Auto Configure by Name (Wait Until All Iterations Run)**. This is what makes v1 and v2 stack even though some columns exist in only one of them.
+- [x] Add **Macro Output** (Interface palette).
+- [x] Add **Control Parameter** (Interface palette, label it `File Path`). Connect it to the file Input tool; an **Action** tool appears. Configure the Action: *Update Input Data value → replace the full file path*.
+- [x] Workflow Configuration → Workflow tab → type **Batch Macro**. Save as `.yxmc`.
+- [x] Interface Designer → Properties → *Output Mode*: **Auto Configure by Name (Wait Until All Iterations Run)**. This is what makes v1 and v2 stack even though some columns exist in only one of them.
 
 **Build `alteryx/01_ingest_crm_extracts.yxmd`:**
-- [ ] **Directory** tool → folder `data\raw\crm_exports\opportunities`, pattern `opps_*.csv`.
-- [ ] Right-click canvas → Insert → Macro → your batch macro. Connect Directory to its control-parameter input (¿ icon), choose `FullPath`.
+- [x] **Directory** tool → folder `data\raw\crm_exports\opportunities`, pattern `opps_*.csv`.
+- [x] Right-click canvas → Insert → Macro → your batch macro. Connect Directory to its control-parameter input (¿ icon), choose `FullPath`.
 - [ ] **Formula**: `crm_version = IIF([source_file] >= "opps_2025_07.csv", "v2", "v1")`.
 - [ ] Output to `data/output/staging/opportunities_unioned.yxdb` **and** `data/output/ai/raw_union_uncleaned.csv` (used in the AI experiment).
 - [ ] ✅ Check: 5,012 rows, 24 distinct `source_file` values.

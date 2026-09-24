@@ -7,7 +7,7 @@
       </GuiSettings>
       <Properties>
         <Configuration>
-          <RenameMode>RightDescriptionRows</RenameMode>
+          <RenameMode>RightInputRows</RenameMode>
           <Fields orderChanged="False">
             <Field name="Opportunity ID" />
             <Field name="Opportunity Name" />
@@ -31,12 +31,12 @@
             <Field name="*Unknown" />
           </Fields>
           <Expression />
-          <DescFromRows>
+          <NamesFromRows>
             <OnError>Warn</OnError>
             <InputMode>Mapped</InputMode>
             <OldName>source_field</OldName>
             <NewName>standard_field</NewName>
-          </DescFromRows>
+          </NamesFromRows>
         </Configuration>
         <Annotation DisplayMode="0">
           <Name />
@@ -45,24 +45,24 @@
         </Annotation>
         <MetaInfo connection="Output">
           <RecordInfo>
-            <Field name="Opportunity ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Opportunity Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Account ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Account Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Opportunity Owner" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Department" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Service Line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Stage" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Probability (%)" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Amount" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Currency" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Created Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Expected Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Actual Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Loss Reason" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Lead Source" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Last Activity Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Last Modified" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="opportunity_id" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="opportunity_name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="account_id" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="account_name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="owner_name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="department_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="service_line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="stage_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="probability_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="amount_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="currency_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="created_date_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="expected_close_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="actual_close_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="loss_reason_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="lead_source_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="last_activity_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="last_modified_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
             <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
           </RecordInfo>
         </MetaInfo>
@@ -89,24 +89,24 @@
         </Annotation>
         <MetaInfo connection="Output">
           <RecordInfo>
-            <Field name="Opportunity ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Opportunity Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Account ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Account Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Opportunity Owner" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Department" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Service Line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Stage" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Probability (%)" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Amount" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Currency" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Created Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Expected Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Actual Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Loss Reason" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Lead Source" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Last Activity Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
-            <Field name="Last Modified" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="opportunity_id" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="opportunity_name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="account_id" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="account_name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="owner_name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="department_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="service_line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="stage_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="probability_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="amount_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="currency_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="created_date_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="expected_close_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="actual_close_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="loss_reason_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="lead_source_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="last_activity_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="last_modified_raw" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
             <Field name="source_file" size="254" source="File: FileName" type="V_WString" />
           </RecordInfo>
         </MetaInfo>
