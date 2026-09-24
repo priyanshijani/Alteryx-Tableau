@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2026.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DynamicRename.DynamicRename">
+        <Position x="486" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <RenameMode>RightDescriptionRows</RenameMode>
+          <Fields orderChanged="False">
+            <Field name="Opportunity ID" />
+            <Field name="Opportunity Name" />
+            <Field name="Account ID" />
+            <Field name="Account Name" />
+            <Field name="Opportunity Owner" />
+            <Field name="Department" />
+            <Field name="Service Line" />
+            <Field name="Stage" />
+            <Field name="Probability (%)" />
+            <Field name="Amount" />
+            <Field name="Currency" />
+            <Field name="Created Date" />
+            <Field name="Expected Close Date" />
+            <Field name="Actual Close Date" />
+            <Field name="Loss Reason" />
+            <Field name="Lead Source" />
+            <Field name="Last Activity Date" />
+            <Field name="Last Modified" />
+            <Field name="FileName" />
+            <Field name="*Unknown" />
+          </Fields>
+          <Expression />
+          <DescFromRows>
+            <OnError>Warn</OnError>
+            <InputMode>Mapped</InputMode>
+            <OldName>source_field</OldName>
+            <NewName>standard_field</NewName>
+          </DescFromRows>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Opportunity ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Owner" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Department" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Service Line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Stage" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Probability (%)" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Amount" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Currency" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Created Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Expected Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Actual Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Loss Reason" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Lead Source" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Activity Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Modified" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDynamicRename" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="606" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="FileName" selected="True" rename="source_file" />
+            <SelectField field="*Unknown" selected="True" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Opportunity ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Owner" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Department" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Service Line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Stage" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Probability (%)" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Amount" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Currency" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Created Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Expected Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Actual Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Loss Reason" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Lead Source" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Activity Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Modified" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="source_file" size="254" source="File: FileName" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MacroOutput.MacroOutput">
+        <Position x="834" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Name>Output6</Name>
+          <Abbrev />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Output</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMacroOutput" />
+    </Node>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="138" y="126" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="FileName" RecordLimit="" SearchSubDirs="False" FileFormat="0">D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv</File>
+          <FormatSpecificOptions>
+            <CodePage>65001</CodePage>
+            <Delimeter>,</Delimeter>
+            <IgnoreErrors>False</IgnoreErrors>
+            <FieldLen>254</FieldLen>
+            <AllowShareWrite>False</AllowShareWrite>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <ImportLine>1</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>opps_2025_03.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Opportunity ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Owner" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Department" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Service Line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Stage" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Probability (%)" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Amount" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Currency" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Created Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Expected Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Actual Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Loss Reason" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Lead Source" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Activity Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Modified" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="FileName" size="254" source="File: FileName" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="138" y="342" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="0">D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\reference\crm_field_mapping_v1_v2.csv</File>
+          <FormatSpecificOptions>
+            <CodePage>28591</CodePage>
+            <Delimeter>,</Delimeter>
+            <IgnoreErrors>False</IgnoreErrors>
+            <FieldLen>254</FieldLen>
+            <AllowShareWrite>False</AllowShareWrite>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <ImportLine>1</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>crm_field_mapping_v1_v2.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="crm_version" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\reference\crm_field_mapping_v1_v2.csv" type="V_String" />
+            <Field name="source_field" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\reference\crm_field_mapping_v1_v2.csv" type="V_String" />
+            <Field name="standard_field" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\reference\crm_field_mapping_v1_v2.csv" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.ControlParam.ControlParam">
+        <Position x="126" y="18" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Control Parameter (7)</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="132" y="72" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Update Value</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="3" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="4" Connection="Output" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="3" Connection="Targets" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="3" Connection="Source" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="7" Connection="Question" />
+      <Destination ToolID="8" Connection="Question" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="8" Connection="Action" />
+      <Destination ToolID="1" Connection="Action" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <DefaultTZ value="Local" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>ControlParam.Control Parameter (7)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>mc_ingest_crm_extract</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="8e9c0d5b-cb83-406e-9c77-0adc25423ee9" />
+      <Telemetry>
+        <PreviousWorkflowId value="caec3f28-ef84-478f-befb-6444e3f276ac" />
+        <OriginWorkflowId value="caec3f28-ef84-478f-befb-6444e3f276ac" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="False" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="8" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>1/File</Destination>
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (5)</Name>
+          <ToolId value="5" />
+          <Questions>
+            <Question>
+              <Type>MacroOutput</Type>
+              <Description>Macro Output (6)</Description>
+              <Name>Macro Output (6)</Name>
+              <ToolId value="6" />
+            </Question>
+            <Question>
+              <Type>ControlParam</Type>
+              <Description>File Path</Description>
+              <Name>Control Parameter (7)</Name>
+              <ToolId value="7" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <BatchMacro>
+        <OutputMode>AutoByName</OutputMode>
+        <ControlParams>
+          <ControlParam>
+            <Name>Control Parameter (7)</Name>
+            <Description>File Path</Description>
+          </ControlParam>
+        </ControlParams>
+      </BatchMacro>
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="6" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
