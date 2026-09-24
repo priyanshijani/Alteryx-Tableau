@@ -4,16 +4,16 @@ Tick boxes as you go (`[ ]` → `[x]`). GitHub renders them as a progress list.
 **Save evidence** where noted: a screenshot in `images/screenshots/` or a file in the repo.
 Expected numbers for every check are in `docs/PLAN.md` → section 10.
 
-Progress: Phase 0 ☐ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+Progress: Phase 0 ✅ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
 
 ---
 
 ## Phase 0 — Setup (Day 1)
 
 - [x] Create the folder `D:\Learnings\Alteryx-Tableau` and unzip the project files into it.
-- [ ] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends 24 october 2026.
-- [ ] Install **Tableau Desktop Free Edition** (tableau.com → Products → Tableau Desktop → Free Edition).
-- [ ] Install **Git for Windows** (git-scm.com) and create a free **GitHub** account.
+- [x] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends ____________.
+- [x] Install **Tableau Desktop Free Edition** (tableau.com → Products → Tableau Desktop → Free Edition).
+- [x] Install **Git for Windows** (git-scm.com) and create a free **GitHub** account.
 - [x] In Git Bash:
   ```bash
   cd /d/Learnings/Alteryx-Tableau

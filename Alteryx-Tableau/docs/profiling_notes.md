@@ -5,7 +5,7 @@
 |---|---|---|---|---|---|
 | 1 | accounts_export |Country| Country grouping incorrect | Germany has value : "GER","Germany"; Franch has :"FR", "FRANCE", etc |  I'll all the fuzzy matches and group them together and rename them in standardized format for proper dimensional grouping on the dashboard
 |2 |Opportunities_YYYY_MM|Sales_Stage|The grouping is improper |stage 1 looks: "Stage 1: Discovery (0-50%)","Discovery"|fuzzy match or text containing workflow to standardized names in this column| 
-|3 |Opportunities_YYYY_MM|win_probability|confidence levels are in standardized format|10% confidence is "0.10" and "10"|we find dot and convert decimal to 0.10 --> 10 values removing dot and trailing numbers after dot to standardize the formatting| 
+|3 |Opportunities_YYYY_MM|Probability (%) (v1) / Win_Probability (v2)|Rep-entered probability is not in a standard format: whole numbers, percentages and decimals are mixed, and some are blank|"75", "75%", "0.75", "0.5", "1.0", ""|1) Remove "%" 2) Convert to a number 3) If the raw value contained "." and the number is ≤ 1, multiply by 100 (so 0.5 → 50, 1.0 → 100). Keep blanks as Null. Result = `rep_probability` (0–100), used only to measure forecast honesty; the forecast uses governed probabilities from `stage_rules.csv` (Phase 4)|
 |4 |Opportunities_YYYY_MM||Explicit stage status is not present if it is active/lost/stale ||Put in a formula logic to check if the deal has been jumping stages using Last_Activity date and first data this opportunity was introduced in the pipeline, first date it was introduced in the current confidence stage | 
 |5 |Opportunities_YYYY_MM|Deal_Currency|the currency names are inconsistent and have null values |euro currency has values: "EUR","eur"|use uppercase function to group the currencies together, handle null currency columns in some way|
 |6|Opportunities_YYYY_MM|Deal_Value|Values have null values, some have commas, decimals, space trails, alphabets|"9,200.00","1 506 600", " ", "44,500.00", "PLN 331,000"|use regex cleaning to correct number format and change data type to numerical to perform mathematical additions, etc functions for analysis|
@@ -18,3 +18,19 @@
 |13|accounts_export.xlsx|Whole sheet|3 junk rows above the header ("Report: All Accounts - Europe", "Exported by…", blank) and 2 footer rows ("Total records: 765", "Confidential…")|Header is on line 4|Input tool → Start Data Import on Line 4; Filter `StartsWith([Account ID], "ACC-")` to drop the footer (Phase 1/3)|
 |14|Opportunities_YYYY_MM|Department / Business_Unit|Many spellings of the same department; v2 uses codes|"Data&AI", "Data and AI", "DATA & AI", "DATA_AI", "CLOUD", "ERP & Apps", "Cyber"|Add every spelling to `value_aliases.csv` (domain = department) → Find Replace (Phase 4)|
 |15|Opportunities_YYYY_MM (v1)|Opportunity Owner|v1 has no email, only the owner's name written in different ways|"Hughes, Oliver", "S. Andersson"|Join to roster in passes: reorder "Last, First" → match on name; unmatched → match on initial + surname; rest → aliases. v2 joins directly on lowercase email (Phase 4)|
+
+## Profiling results (Phase 1)
+Counted across **all 24 opportunity files** (5,012 rows), the stage history log, the accounts file (765 records) and the sales roster. Workflow: `alteryx/00_profiling.yxmd`.
+
+| Domain | Distinct raw spellings | Standard values | Where |
+|---|---|---|---|
+| Stage | 29 (26 ignoring upper/lower case) | 6 | opportunities + stage history |
+| Department | 19 (16) | 4 | opportunities + roster |
+| Country | 59 (57) | 18 | accounts |
+| Industry | 32 (29) | 8 | accounts |
+| Company size | 14 | 5 | accounts (`Employees` column) |
+| Loss reason | 21 (18) | 6 | opportunities |
+| Lead source | 18 | 6 | opportunities |
+| Owner (v1 names) | 108 (81) | 29 AEs | opportunities v1 – most solved by the join passes, only initials + one misspelling need the alias table |
+
+**Result:** `data/reference/value_aliases.csv` now holds 210 rows. Checked in Python: every raw spelling found in the data (ignoring case) has a row, so Find Replace will leave nothing unmapped.

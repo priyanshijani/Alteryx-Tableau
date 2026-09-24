@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2026.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="138" y="138" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_18556_755a2cb4d4834c88bedc38dccd5ab069_\Engine_18556_5f279ef60ae54f6cbf2bcd69131d018d~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="138" y="390" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_18556_755a2cb4d4834c88bedc38dccd5ab069_\Engine_18556_0038fe726fa8465fa9d271cdbc723a08~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="138" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="0">D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv</File>
+          <FormatSpecificOptions>
+            <CodePage>65001</CodePage>
+            <Delimeter>,</Delimeter>
+            <IgnoreErrors>False</IgnoreErrors>
+            <FieldLen>254</FieldLen>
+            <AllowShareWrite>False</AllowShareWrite>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <ImportLine>1</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>opps_2025_03.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Opportunity ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Account Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Opportunity Owner" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Department" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Service Line" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Stage" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Probability (%)" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Amount" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Currency" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Created Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Expected Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Actual Close Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Loss Reason" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Lead Source" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Activity Date" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+            <Field name="Last Modified" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2025_03.csv" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="2">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="390" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="0">D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv</File>
+          <FormatSpecificOptions>
+            <CodePage>65001</CodePage>
+            <Delimeter>,</Delimeter>
+            <IgnoreErrors>False</IgnoreErrors>
+            <FieldLen>254</FieldLen>
+            <AllowShareWrite>False</AllowShareWrite>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <ImportLine>1</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>opps_2026_03.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Opp_ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Created_On" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Opp_Name" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Acct_ID" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Owner_Email" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Business_Unit" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Offering" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Sales_Stage" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Win_Probability" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Deal_Value" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Deal_Currency" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Close_Date_Expected" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Close_Date_Actual" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Lost_Reason" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Source" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Last_Activity" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Forecast_Category" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+            <Field name="Modified_At" size="254" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities\opps_2026_03.csv" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Stage" action="GroupBy" rename="Stage" />
+            <SummarizeField field="Stage" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>v1 stage spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="11">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="138" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Department" action="GroupBy" rename="Department" />
+            <SummarizeField field="Department" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>v1 department spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="222" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Currency" action="GroupBy" rename="Currency" />
+            <SummarizeField field="Currency" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>v1 currency spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="20">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="306" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Sales_Stage" action="GroupBy" rename="Sales_Stage" />
+            <SummarizeField field="Sales_Stage" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>v2 stage spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="21">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="390" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Business_Unit" action="GroupBy" rename="Business_Unit" />
+            <SummarizeField field="Business_Unit" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>v2 department spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="22">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="474" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Deal_Currency" action="GroupBy" rename="Deal_Currency" />
+            <SummarizeField field="Deal_Currency" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>v2 currency spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="30">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="642" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`</File>
+          <FormatSpecificOptions>
+            <FirstRowData>False</FirstRowData>
+            <ImportLine>4</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>accounts (start on line 4)</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="Account ID" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_String" />
+            <Field name="Account Name" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_String" />
+            <Field name="Industry" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_String" />
+            <Field name="Country" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_String" />
+            <Field name="City" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_WString" />
+            <Field name="Employees" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_String" />
+            <Field name="Annual Revenue (EUR m)" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_String" />
+            <Field name="Latitude" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="Double" />
+            <Field name="Longitude" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="Double" />
+            <Field name="Website" size="255" source="File: D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\accounts_export.xlsx|||`Accounts$`" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="31">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="150" y="642" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Expression>StartsWith([Account ID], "ACC-")</Expression>
+          <Mode>Custom</Mode>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>drop footer rows</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="32">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="246" y="558" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_18556_755a2cb4d4834c88bedc38dccd5ab069_\Engine_18556_5d7a9bb6444342c5a0632c355595c574~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>765 accounts expected</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="33">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="642" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Country" action="GroupBy" rename="Country" />
+            <SummarizeField field="Country" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>country spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="34">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="726" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Industry" action="GroupBy" rename="Industry" />
+            <SummarizeField field="Industry" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>industry spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="35">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="246" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Employees" action="GroupBy" rename="Employees" />
+            <SummarizeField field="Employees" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>company size spellings</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="3" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="10" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="11" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="4" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="20" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="21" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="2" Connection="Output" />
+      <Destination ToolID="22" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="30" Connection="Output" />
+      <Destination ToolID="31" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="True" />
+      <Destination ToolID="32" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="True" />
+      <Destination ToolID="33" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="True" />
+      <Destination ToolID="34" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="31" Connection="True" />
+      <Destination ToolID="35" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <DefaultTZ value="Local" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>00_profiling</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="97b8b5af-92b6-40ee-8a34-4af980f0a733" />
+      <Telemetry>
+        <PreviousWorkflowId value="84983144-72c6-4c43-a903-e979d4c5afc2" />
+        <OriginWorkflowId value="84983144-72c6-4c43-a903-e979d4c5afc2" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
