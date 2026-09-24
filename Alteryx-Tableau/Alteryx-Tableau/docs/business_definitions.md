@@ -86,6 +86,15 @@
 | **Forecast honesty gap (pts)** | `AVG(rep_probability − governed_probability × 100)` on open deals | Positive = optimistic |
 | **Quota attainment YTD %** | FY2026 bookings ÷ prorated quota | |
 
+## 5b. Predictive win probability (advisory)
+
+| Term | Definition | Why |
+|---|---|---|
+| **Model win probability** | Probability (0–1) that an open deal ends Closed Won, from model `wp-v1-2026-09-15` (see `docs/model_card.md`). Uses only information known while the deal is open. | Stage alone treats all Proposal deals the same; history shows size, industry, region, team and time-in-stage matter. |
+| **Model-weighted pipeline €** | `SUM(amount_eur × model_win_probability)` for scored open deals. | Compared with the governed weighted pipeline to test the forecast. |
+| **Model review flag** | "Review" when model and governed probability differ by 25 points or more. | Points the Monday review at the deals where "the rule" and "the data" disagree most. |
+| **Status** | *Advisory*: shown next to, never instead of, the governed forecast until it beats it for two consecutive quarters with CRO sign-off. | A model must earn trust before it drives commitments. |
+
 ## 6. Known limitations
 - Data is synthetic. Patterns were designed for learning, not taken from a real company.
 - FX rates are monthly averages; finance may use daily rates.
@@ -96,3 +105,4 @@
 | Date | Change | Approved by |
 |---|---|---|
 | 2026-09-24 | v1.0 drafted | — |
+| 2026-09-24 | v1.1 added predictive win probability (advisory) | — |

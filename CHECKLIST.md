@@ -4,7 +4,7 @@ Tick boxes as you go (`[ ]` → `[x]`). GitHub renders them as a progress list.
 **Save evidence** where noted: a screenshot in `images/screenshots/` or a file in the repo.
 Expected numbers for every check are in `docs/PLAN.md` → section 10.
 
-Progress: Phase 0 ☐ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+Progress: Phase 0 ☐ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
 
 ---
 
@@ -132,7 +132,7 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
 - [ ] Timestamp: first `Replace(Replace([Changed On], "T", " "), "Z", "")`, then parse `%Y-%m-%d %H:%M:%S` or `%d/%m/%Y %H:%M`.
 - [ ] **Unique** on id + new stage + parsed timestamp → 16,129. 💡 Note in your README: duplicates only become visible *after* parsing, because the same event was logged with different timestamp formats.
 - [ ] Join to the 4,800 clean deals; the **L output** (36 rows: deleted + test deals) → rejected, reason `ORPHAN_HISTORY`. ✅ 16,093.
-- [ ] Join `stage_rules.csv` to get `stage_order`. **Sort** by id, timestamp.
+- [ ] Join `stage_rules.csv` to get `stage_order`, `governed_probability` and `stuck_after_days` *for the stage of that stint* (Phase 6b needs them). **Sort** by id, timestamp.
 - [ ] **Multi-Row Formula** (Group By `opportunity_id`) to create `exited_at` = the next row's timestamp:
   `[Row+1:changed_at]` — for the last row of each deal it is Null.
 - [ ] For open-stage rows: `exited_at` Null → use `[User.SnapshotDate]` and `is_current = True`. `days_in_stage = DateTimeDiff([exited_at], [changed_at], "days")`.
@@ -158,7 +158,100 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
 
 ---
 
-## Phase 7 — Reconciliation & tests (Day 8)
+## Phase 6b — Predictive win probability (ML) (Day 9–11)
+
+**Goal:** give every open deal a data-driven win probability, prove it beats the governed stage probabilities
+on a backtest, and publish it as an *advisory* signal with a model card.
+Put this in its own workflow: `alteryx/03_win_probability_model.yxmd`.
+
+### 6b.1 Install and prepare
+- [ ] Install **Alteryx Predictive Tools** (a separate free installer that adds the R-based tools). Download it from the same Alteryx downloads/licence portal as Designer. **The installer version must match your Designer version.**
+- [ ] Restart Designer. ✅ The **Predictive** tool palette now shows Logistic Regression, Forest Model, Score, and more.
+- [ ] In `02_build_pipeline_mart.yxmd`, at the end of Container E, add two Output Data tools:
+  `data/output/staging/deals_for_model.yxdb` (all 4,800 deals with business-rule fields) and
+  `data/output/staging/stints_for_model.yxdb` (the 12,017 stints). Run 02.
+- [ ] Create `03_win_probability_model.yxmd`. Add two workflow constants: `SnapshotDate = 2026-09-15` and `BacktestDate = 2026-03-01`.
+- [ ] 💡 If a Predictive tool shows an engine-compatibility error, open Workflow Configuration → Runtime and switch this one workflow off the AMP engine.
+
+### 6b.2 Understand the leakage rule before touching data
+A model may only use information that was **known at the moment of prediction**. Copy this table into `docs/model_card.md` (the template is already there):
+
+| Allowed features (known while the deal is open) | Excluded features (leak the outcome) |
+|---|---|
+| `stage`, `service_line`, `department`, `sales_region`, `industry`, `company_size_band`, `deal_type`, `lead_source`, `sales_manager`, `amount_eur` (as log), days in stage so far, deal age, regressions so far, over stuck threshold (yes/no) | `rep_probability` (is 0 or 100 on closed deals), rep `forecast_category`, `loss_reason`, `actual_close_date`, `sales_cycle_days`, `last_activity_date` / `days_since_activity` / `is_stale` (equal the close date on closed deals), `max_stage_reached`, `lost_at_stage`, `expected_close_date` (only today's value is stored), `account_status` (uses wins that happened later) |
+
+### 6b.3 Container H1 · Build "photos" of deals (training observations)
+The trick: take a "photo" of each closed deal at day 0, 14, 30, 45, 60, 90 and 120 of every stage it passed through. Each photo only shows what was known on that day, plus the final outcome.
+- [ ] Input both staging files. **Join** stints to deals on `opportunity_id` to bring in the features and outcome.
+  ⚠️ In the Join's field list, keep `stage`, `stage_order`, `governed_probability` and `stuck_after_days` from the **stint** side and untick the deal's versions. A photo describes the stage the deal was in *at that time*, not its final stage. Getting this wrong is a subtle form of leakage.
+- [ ] **Sort** by `opportunity_id`, `entered_at`. **Multi-Row Formula** (group by `opportunity_id`), new field `regressions_so_far` (Int16), rows that don't exist = 0:
+  `IIF([Row-1:exit_type] = "Regressed", [Row-1:regressions_so_far] + 1, [Row-1:regressions_so_far])`
+- [ ] **Text Input** with one column `checkpoint_day`: 0, 14, 30, 45, 60, 90, 120.
+- [ ] **Append Fields**: target = stints, source = checkpoints → each stint appears 7 times.
+- [ ] **Filter** `[days_in_stage] >= [checkpoint_day]` (the deal must still have been in that stage on that day).
+- [ ] **Formula** tool:
+  ```
+  days_in_stage_so_far = [checkpoint_day]
+  observation_date     = DateTimeAdd([entered_at], [checkpoint_day], "days")
+  deal_age_days        = DateTimeDiff([observation_date], [created_date], "days")
+  over_stuck_threshold = IIF([checkpoint_day] > [stuck_after_days], "Yes", "No")
+  log_amount           = Log10([amount_eur])
+  outcome              = IIF([is_won], "Won", "Lost")
+  ```
+- [ ] **Filter** out rows with null `amount_eur` or `AMOUNT_OUTLIER` in `dq_flags`.
+
+### 6b.4 Container H2 · Backtest split (by time, never random)
+We pretend it is **1 March 2026**, train only on what was known then, and check the model against what actually happened. All photos of one deal stay on the same side of the split. Splitting randomly would let the model "see the future".
+- [ ] **TRAIN**: photos of deals that are closed (`is_won` or `is_lost`) with `actual_close_date < [User.BacktestDate]`. ✅ About 20,000 rows from about 2,900 deals. The win rate per row (~43%) is higher than per deal, because deals that reach later stages produce more photos. That's expected.
+- [ ] **TEST** ("the pipeline as it looked on 1 March 2026"): from the *stints* (not photos), keep rows where `entered_at <= BacktestDate` AND (`exited_at > BacktestDate` OR `exited_at` is Null). Then:
+  ```
+  days_in_stage_so_far = Min(DateTimeDiff([User.BacktestDate], [entered_at], "days"), 120)
+  deal_age_days        = DateTimeDiff([User.BacktestDate], [created_date], "days")
+  over_stuck_threshold = IIF([days_in_stage_so_far] > [stuck_after_days], "Yes", "No")
+  outcome_by_snapshot  = IIF([is_won], "Won", IIF([is_lost], "Lost", "Still open"))
+  ```
+  Use `regressions_so_far` from the Multi-Row step. Also apply the same `log_amount` and amount filters. ✅ About 635 deals open on 1 March 2026; about 550 of them were decided by 15 September.
+- [ ] Cap `days_in_stage_so_far` at 120 in TRAIN too, so both sides use identical feature definitions.
+
+### 6b.5 Container H3 · Train two models on TRAIN
+- [ ] **Logistic Regression** tool: model name `wp_logit`, target `outcome`, predictors = the allowed features **except `department`**. Service line and sales manager already imply the department. Giving a regression model the same information twice (multicollinearity) makes its coefficients unstable.
+- [ ] **Forest Model** tool: model name `wp_forest`, same target, all allowed features (trees handle overlapping features). Default settings are fine; set a seed for reproducibility.
+- [ ] Browse each tool's **R (report)** output. 📸 `17_logit_coefficients.png`, `18_forest_variable_importance.png`. Write in the model card which three features matter most and whether that makes business sense.
+
+### 6b.6 Container H4 · Evaluate on the backtest
+- [ ] **Score** tool × 2 (model → M input, TEST → D input). Each adds `Score_Won` = predicted probability of winning.
+- [ ] Keep decided deals only (`outcome_by_snapshot` ≠ "Still open"), create `y = IIF([outcome_by_snapshot] = "Won", 1, 0)`.
+- [ ] **Brier score** (lower = better; the average squared distance between prediction and reality): Formula `(Score_Won - y)^2` → Summarize Avg. Do the same with `governed_probability` in place of `Score_Won`.
+- [ ] **Calibration**: `prob_bin = Floor([Score_Won] * 10) / 10` → Summarize by bin: Count, Avg(`Score_Won`), Avg(`y`). A good model's predicted and actual averages sit close together. Add a `method` field ("Model" / "Governed") and **Union** both results → this becomes a Tableau chart.
+- [ ] (Optional) **Model Comparison** tool for AUC, a 0.5–1.0 score of how well the model ranks winners above losers. If it isn't in your palette, skip it; Brier and calibration are enough.
+- [ ] **Business backtest** on all TEST deals (Summarize): `Sum(amount_eur × governed_probability)`, `Sum(amount_eur × Score_Won)`, actual won € by 15 Sep, € still open. Error % = forecast ÷ actual − 1.
+- [ ] Pick the model with the lower Brier score and record the decision in the model card.
+- [ ] ✅ Expected ballpark: model AUC ≈ 0.72–0.76 vs governed ≈ 0.67; Brier ≈ 0.20 vs ≈ 0.26; the governed forecast overstates actual won € far more than the model does. 💡 That last point is a business finding in itself: the stage probabilities in `stage_rules.csv` look too optimistic and Sales Ops should review them. This is the governance loop in action.
+
+### 6b.7 Container H5 · Retrain on everything and score today's pipeline
+- [ ] **TRAIN_FULL**: photos of all deals closed before `SnapshotDate` (✅ about 29,000 rows from about 4,070 deals). Copy your chosen model tool, same settings, name it `wp_final`.
+- [ ] **SCORE set** = today's open deals from `deals_for_model`:
+  `days_in_stage_so_far = Min([days_in_current_stage], 120)`, `deal_age_days = DateTimeDiff([User.SnapshotDate], [created_date], "days")`, `regressions_so_far = [regression_count]`, `over_stuck_threshold = IIF([is_stuck], "Yes", "No")`, `log_amount = Log10([amount_eur])`.
+  Deals without an amount can't be scored. Keep them with `model_status = "NOT_SCORED_NO_AMOUNT"`.
+- [ ] **Score** → Formula:
+  ```
+  model_win_probability = [Score_Won]
+  model_weighted_eur    = [amount_eur] * [Score_Won]
+  model_vs_governed_pts = ([Score_Won] - [governed_probability]) * 100
+  model_review_flag     = IIF(Abs([model_vs_governed_pts]) >= 25, "Review", "OK")
+  model_version         = "wp-v1-2026-09-15"
+  ```
+- [ ] **Test** tool guardrails: every score between 0 and 1; scored rows + not-scored rows = 724 open deals.
+- [ ] 📸 `19_ml_workflow.png` (the whole of `03_win_probability_model.yxmd`).
+
+### 6b.8 Outputs and documentation
+- [ ] **Output Data** → `data/output/model_scores.hyper` (opportunity_id + the fields above), `data/output/model_calibration.hyper`, `data/output/model_backtest.hyper`.
+- [ ] Fill in `docs/model_card.md` (purpose, data, features, excluded features, split, metrics, limitations, status = *Advisory*).
+- [ ] `git commit -m "Leakage-safe win probability model with time-based backtest and model card"`
+
+---
+
+## Phase 7 — Reconciliation & tests (Day 12)
 
 **Container F** — this is what makes the numbers trustworthy.
 - [ ] Build a table of checks: `check_name`, `expected`, `actual`, `status` (PASS/FAIL). Include at least:
@@ -175,7 +268,7 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
 
 ---
 
-## Phase 8 — Outputs (Day 8)
+## Phase 8 — Outputs (Day 12)
 
 **Container G**
 - [ ] A final **Select** per table: rename to the names in PLAN §4.1, set types (Date, Double, Bool, V_WString), drop helper fields.
@@ -190,7 +283,7 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
 ## Phase 9 — Tableau dashboards (Week 4–5)
 
 Setup:
-- [ ] Tableau Desktop → Connect → *More…* → open `pipeline_deals.hyper`. Add `pipeline_stage_stints` and `sales_team` as **related** tables (drag onto canvas; relationships on `opportunity_id` and `owner_email`). Add `dept_quarter_summary` as a second data source.
+- [ ] Tableau Desktop → Connect → *More…* → open `pipeline_deals.hyper`. Add `pipeline_stage_stints`, `model_scores` and `sales_team` as **related** tables (drag onto canvas; relationships on `opportunity_id`, `opportunity_id` and `owner_email`). Add `dept_quarter_summary`, `model_calibration` and `model_backtest` as separate data sources.
 - [ ] Dashboard size: Fixed 1400 × 900. Create a colour palette (Won green, Lost grey, stage blues, risk amber/red) and reuse it.
 - [ ] Create calculated fields listed in business_definitions §5 (Win Rate, Coverage, etc.) — put them in a folder called "Governed metrics".
 
@@ -199,7 +292,9 @@ Pages (specs in PLAN §6):
 - [ ] **Page 2 Deal Velocity & Stuck Deals** — days in stage vs threshold, heatmap, risk scatter, fix-this-week table. 📸 `11_tableau_velocity.png`
 - [ ] **Page 3 Manager & Department Performance** — drill-down, quota bullets, pipeline vs win-rate scatter, forecast honesty. 📸 `12_tableau_performance.png`
 - [ ] **Page 4 Europe Market Opportunity** — dual-axis map, industry × region heatmap, service mix, top accounts. 📸 `13_tableau_europe_map.png`
-- [ ] **Page 5 Data Trust** — row bridge + checks. 📸 `14_tableau_data_trust.png`
+- [ ] **Page 5 Win Probability (ML)** — calibration chart (predicted vs actual, model vs governed, 45° reference line); backtest bars (governed forecast vs model forecast vs actual won); "gut vs rules vs data" by manager (avg rep vs governed vs model probability); open-deal table sorted by `model_review_flag`. 📸 `14_tableau_win_probability.png`
+- [ ] Add a **Model-weighted Pipeline €** KPI tile to Page 1, labelled *advisory*.
+- [ ] **Page 6 Data Trust** — row bridge + checks. 📸 `15_tableau_data_trust.png`
 - [ ] Navigation buttons between pages; one filter action per page; tooltips checked.
 - [ ] Write a one-line "So what" on each page (e.g. "Data & AI Proposal deals wait 47 days — escalate budget approvals").
 - [ ] File → Save As → **Packaged Workbook** `tableau/Nexora_Pipeline_Intelligence.twbx`.
@@ -211,7 +306,7 @@ Pages (specs in PLAN §6):
 ## Phase 10 — AI experiment (Week 6)
 
 - [ ] Follow `ai_experiment/README.md` (Rounds A, B, C). Fill in the results table.
-- [ ] 📸 `15_ai_ungrounded.png`, `16_ai_grounded.png` (chat screenshots, same question, different answers).
+- [ ] 📸 `20_ai_ungrounded.png`, `21_ai_grounded.png` (chat screenshots, same question, different answers).
 - [ ] `git commit -m "AI grounded vs ungrounded experiment"`
 
 ---

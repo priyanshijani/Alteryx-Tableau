@@ -76,6 +76,8 @@ documented in `docs/business_definitions.md`, and reused by dashboards and AI.
 | `dept_quarter_summary.hyper` | department × quarter | Targets vs bookings vs pipeline expected to close |
 | `dq_reconciliation.hyper` (+ `.csv` in `quality/`) | 1 row per check | Data Trust page and README evidence |
 | `quality/rejected_records.csv` | 1 row per removed record + reason | Audit trail |
+| `model_scores.hyper` | 1 row per open opportunity | ML win probability, model-weighted €, review flag (Phase 6b) |
+| `model_calibration.hyper` · `model_backtest.hyper` | probability bin × method · method | Proof the model beats governed probabilities |
 | `ai/pipeline_deals_for_ai.csv` and `ai/raw_union_uncleaned.csv` | — | Inputs for the AI experiment |
 
 ### 4.1 `pipeline_deals` — column list
@@ -100,6 +102,7 @@ documented in `docs/business_definitions.md`, and reused by dashboards and AI.
 alteryx/
 ├── 01_ingest_crm_extracts.yxmd        # Directory → batch macro → unified raw opportunities (.yxdb)
 ├── 02_build_pipeline_mart.yxmd        # all cleaning, rules, reconciliation, outputs
+├── 03_win_probability_model.yxmd     # leakage-safe ML: photos, backtest, train, score
 └── macros/
     ├── mc_ingest_crm_extract.yxmc     # BATCH macro: read 1 file, rename via mapping, tag source
     └── mc_normalize_company_name.yxmc # STANDARD macro (stretch): reusable name-normalisation key
@@ -116,6 +119,8 @@ alteryx/
 | E · Business rules | Governed probability, weighted €, FX conversion, stuck/stale/past-due, at-risk, deal type, account status, deal size band | Join to `stage_rules` & FX, Formula, Summarize, Workflow constant `SnapshotDate` |
 | F · Reconciliation | Compare to CRM control totals, row bridge, stage counts, currency sums, orphan counts, fail loudly if broken | Summarize, Join, Formula, **Test** tool, Message tool |
 | G · Outputs | Write Hyper files, CSVs for AI and audit | Output Data (.hyper / .csv), Select (final names & types) |
+
+`03_win_probability_model.yxmd` (Phase 6b) has five containers: **H1** photos of closed deals (Append Fields × checkpoint days), **H2** time-based backtest split at 1 Mar 2026, **H3** Logistic Regression + Forest Model, **H4** Score + Brier + calibration + business backtest, **H5** retrain on all history and score today's open deals. Documented in `docs/model_card.md`.
 
 **Design rules to show off in the README:**
 1. Business rules stored as reference data (`stage_rules.csv`, `value_aliases.csv`), not buried in formulas.
@@ -164,7 +169,14 @@ source filtered with the shared `department` field.
 - Pipeline by service line for the selected region (map acts as a filter).
 - Top accounts table with account status (Active Customer / Prospect).
 
-### Page 5 — Data Trust (small)
+### Page 5 — Win Probability (ML)
+- Calibration chart: predicted vs actual win rate by probability bin, model vs governed, with a 45° reference line.
+- Backtest: governed forecast € vs model forecast € vs actual won € for the pipeline of 1 Mar 2026.
+- "Gut vs rules vs data": average rep, governed and model probability by manager.
+- Open-deal review list: deals where model and governed probability differ by ≥ 25 points.
+- (Page 1 also gets an *advisory* Model-weighted Pipeline € tile.)
+
+### Page 6 — Data Trust (small)
 - Row bridge: raw rows → duplicates → test → older versions → final deals (waterfall or bar).
 - Reconciliation checks table (pass/fail) and counts of records auto-fixed by each rule.
 
@@ -182,6 +194,8 @@ Same five questions, asked twice to a free AI assistant, compared with the Table
 |---|---|---|
 | A · Ungrounded | `raw_union_uncleaned.csv` | Fast, confident, and wrong in specific, explainable ways |
 | B · Grounded | `pipeline_deals_for_ai.csv` + `business_definitions.md` | Matches Tableau (or close) |
+
+The ML model and the AI assistant play different roles: the **model** produces a number (win probability) from history; the **AI assistant** explains and summarises numbers. Both are only trustworthy on top of governed, reconciled data.
 | C · Narrative | Round B context + "write the CRO's Monday summary" | You verify every claim against Tableau and log it |
 
 Full protocol in `ai_experiment/README.md`.
@@ -194,9 +208,10 @@ Full protocol in `ai_experiment/README.md`.
 |---|---|---|
 | 1 | Setup + profiling + batch macro | `01_ingest` produces 5,012 unified rows from 24 files |
 | 2 | Accounts, team, opportunities cleaned | 720 master accounts, 4,800 deals, all joins' L/R outputs explained |
-| 3 | Stage stints + business rules + reconciliation | All checks pass; Hyper files written |
+| 3 | Stage stints + business rules | Stints and rules match the answer key |
+| 3–4 | ML win probability (Phase 6b) + reconciliation + outputs | Model beats governed probabilities on backtest; all checks pass; Hyper files written |
 | 4 | Tableau pages 1–2 | Screenshots saved |
-| 5 | Tableau pages 3–5 | Screenshots saved |
+| 5 | Tableau pages 3–6 | Screenshots saved |
 | 6 | AI experiment, README, GitHub, LinkedIn | Repo public, post published |
 
 ---
@@ -214,6 +229,7 @@ Full protocol in `ai_experiment/README.md`.
 - **Energy & Utilities** (energy transition) is a high-converting industry, concentrated in DACH and the Nordics.
 - About a third of open pipeline breaches a stuck threshold — pipeline hygiene is itself an executive insight.
 - A departed rep still owns open deals (orphaned pipeline).
+- The governed stage probabilities are **too optimistic**: on the 1 Mar 2026 backtest they overstate won € much more than the ML model does, which is a reason to recalibrate `stage_rules.csv`.
 
 </details>
 
@@ -239,5 +255,11 @@ Use these to validate your Alteryx work (they are also what a CRM control report
 | Stage-change rows (Field = Stage) | 16,289 → 16,129 after de-duplicating *parsed* values → 16,093 after removing 36 orphan rows |
 | Open-stage stints | 12,017 |
 | Deals that moved backwards at least once | 206 |
+
+| ML backtest: training photos / deals (closed before 1 Mar 2026) | ≈ 20,000 / ≈ 2,900 |
+| ML backtest: deals open on 1 Mar 2026 / decided by 15 Sep | ≈ 635 / ≈ 550 |
+| ML backtest: AUC model vs governed · Brier model vs governed | ≈ 0.72–0.76 vs ≈ 0.67 · ≈ 0.20 vs ≈ 0.26 |
+| ML final training photos / deals | ≈ 29,000 / ≈ 4,070 |
+| Open deals scored / not scored (no amount) | ≈ 690 / ≈ 32 |
 
 A complete alias table is in `docs/solutions/value_aliases_complete.csv` — build your own first, then compare.

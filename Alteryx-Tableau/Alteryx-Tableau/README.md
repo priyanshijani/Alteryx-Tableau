@@ -6,8 +6,8 @@
 ![Alteryx](https://img.shields.io/badge/Data%20Prep-Alteryx%20Designer-0078C0) ![Tableau](https://img.shields.io/badge/Visualisation-Tableau-E97627) ![Data](https://img.shields.io/badge/Data-Synthetic%20CRM-555) ![Status](https://img.shields.io/badge/Status-In%20progress-yellow)
 
 > **In one sentence:** I built a governed data-prep layer in Alteryx that cleans and reconciles 24 months of
-> messy CRM exports for a (fictional) European IT consultancy, delivered four executive dashboards in Tableau,
-> and ran an experiment showing that an AI assistant answers pipeline questions wrongly on raw data but
+> messy CRM exports for a (fictional) European IT consultancy, delivered executive dashboards in Tableau,
+> built a leakage-safe ML win-probability model that beats rule-based stage probabilities on a backtest, and ran an experiment showing that an AI assistant answers pipeline questions wrongly on raw data but
 > correctly once grounded in my business definitions.
 
 ---
@@ -49,6 +49,8 @@ flowchart LR
     W --> H[(Hyper extracts)]
     W --> Q[Reconciliation report<br/>+ rejected records]
     H --> T[Tableau: 4 executive pages<br/>+ Data Trust page]
+    W --> ML[[ML win probability<br/>backtest · score · model card]]
+    ML --> H
     W --> AI[AI experiment<br/>grounded vs ungrounded]
 ```
 
@@ -64,6 +66,7 @@ flowchart LR
 | Owners typed as names, "Last, First", initials | Three-pass matching, unmatched records inspected at every step | Join (L/R outputs) |
 | No "days in stage" in the CRM | Rebuilt stage stints from the audit log | Multi-Row Formula (grouped) |
 | 8 currencies | FX at close month (won/lost) or snapshot month (open) | Join, Formula |
+| Stage probabilities treat every deal alike | Leakage-safe ML win probability: "photos" of deals at fixed days in stage, time-based backtest, Logistic Regression vs Forest Model, calibration | Predictive tools, Append Fields, Score |
 | "Can I trust it?" | Automated checks against CRM control totals; workflow fails if any check fails | Test, Message, Summarize |
 
 **Reconciliation:** <!-- TODO (final): table from data/output/quality/dq_reconciliation.csv --> 5,012 raw rows → 4,800 opportunities, every step explained.
@@ -74,6 +77,7 @@ flowchart LR
 ### Deal Velocity & Stuck Deals
 ### Manager & Department Performance
 ### Europe Market Opportunity
+### Win Probability (ML)
 ### Data Trust
 
 ## 6. Key insights
@@ -103,6 +107,7 @@ flowchart LR
 **Data quality:** reconciliation to source control totals, automated tests, rejected-record audit trail ·
 **Business analysis:** metric definition, forecasting logic, sales operations domain ·
 **Visualisation:** executive dashboard design, LOD expressions, maps, actions ·
+**Machine learning:** leakage-safe feature design, time-based backtesting, calibration, model governance ·
 **AI:** grounding, evaluation against ground truth, human verification.
 
 ## 10. About
