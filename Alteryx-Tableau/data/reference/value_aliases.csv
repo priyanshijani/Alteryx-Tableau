@@ -1,0 +1,10 @@
+domain,raw_value,standard_value
+stage,1 - Discovery,Discovery
+stage,Stage 5: Closed Won (100%),Closed Won
+department,DATA_AI,Data & AI
+country,Deutschland,DE
+industry,FinServ,Financial Services
+company_size,1k-5k,"1,000-4,999"
+loss_reason,Competitor,Lost to Competitor
+lead_source,Upsell,Existing Customer (Upsell)
+owner,Anna Mueller,anna.muller@nexora-consulting.eu

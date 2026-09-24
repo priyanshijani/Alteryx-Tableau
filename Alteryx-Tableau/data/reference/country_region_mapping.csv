@@ -1,0 +1,19 @@
+country_code,country_name,sales_region,currency
+BE,Belgium,Benelux,EUR
+LU,Luxembourg,Benelux,EUR
+NL,Netherlands,Benelux,EUR
+CZ,Czechia,CEE,CZK
+PL,Poland,CEE,PLN
+AT,Austria,DACH,EUR
+DE,Germany,DACH,EUR
+CH,Switzerland,DACH,CHF
+FR,France,France,EUR
+DK,Denmark,Nordics,DKK
+FI,Finland,Nordics,EUR
+NO,Norway,Nordics,NOK
+SE,Sweden,Nordics,SEK
+IT,Italy,Southern Europe,EUR
+PT,Portugal,Southern Europe,EUR
+ES,Spain,Southern Europe,EUR
+IE,Ireland,UK & Ireland,EUR
+GB,United Kingdom,UK & Ireland,GBP

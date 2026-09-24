@@ -1,0 +1,37 @@
+crm_version,source_field,standard_field
+v1,Opportunity ID,opportunity_id
+v2,Opp_ID,opportunity_id
+v1,Opportunity Name,opportunity_name
+v2,Opp_Name,opportunity_name
+v1,Account ID,account_id
+v2,Acct_ID,account_id
+v1,Account Name,account_name
+v1,Opportunity Owner,owner_name
+v2,Owner_Email,owner_email
+v1,Department,department_raw
+v2,Business_Unit,department_raw
+v1,Service Line,service_line
+v2,Offering,service_line
+v1,Stage,stage_raw
+v2,Sales_Stage,stage_raw
+v1,Probability (%),probability_raw
+v2,Win_Probability,probability_raw
+v1,Amount,amount_raw
+v2,Deal_Value,amount_raw
+v1,Currency,currency_raw
+v2,Deal_Currency,currency_raw
+v1,Created Date,created_date_raw
+v2,Created_On,created_date_raw
+v1,Expected Close Date,expected_close_raw
+v2,Close_Date_Expected,expected_close_raw
+v1,Actual Close Date,actual_close_raw
+v2,Close_Date_Actual,actual_close_raw
+v1,Loss Reason,loss_reason_raw
+v2,Lost_Reason,loss_reason_raw
+v1,Lead Source,lead_source_raw
+v2,Source,lead_source_raw
+v1,Last Activity Date,last_activity_raw
+v2,Last_Activity,last_activity_raw
+v2,Forecast_Category,forecast_category_rep
+v1,Last Modified,last_modified_raw
+v2,Modified_At,last_modified_raw

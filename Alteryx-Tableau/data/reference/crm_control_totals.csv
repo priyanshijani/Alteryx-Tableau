@@ -1,0 +1,19 @@
+Control Total,Dimension,Value
+Unique opportunities in CRM (incl. test records),All,4806
+Opportunities by stage (excl. test records),Discovery,233
+Opportunities by stage (excl. test records),Solution Design,218
+Opportunities by stage (excl. test records),Proposal,194
+Opportunities by stage (excl. test records),Negotiation,79
+Opportunities by stage (excl. test records),Closed Won,1107
+Opportunities by stage (excl. test records),Closed Lost,2969
+"Sum of Amount as stored, local currency (excl. test records)",(blank),53235300
+"Sum of Amount as stored, local currency (excl. test records)",CHF,39712800
+"Sum of Amount as stored, local currency (excl. test records)",CZK,792713100
+"Sum of Amount as stored, local currency (excl. test records)",DKK,305217600
+"Sum of Amount as stored, local currency (excl. test records)",EUR,832123000
+"Sum of Amount as stored, local currency (excl. test records)",GBP,171014200
+"Sum of Amount as stored, local currency (excl. test records)",NOK,341563300
+"Sum of Amount as stored, local currency (excl. test records)",PLN,369939600
+"Sum of Amount as stored, local currency (excl. test records)",SEK,584321000
+Opportunities with blank Amount (excl. test records),All,44
+Account records in CRM,All,765
