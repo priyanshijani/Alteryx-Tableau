@@ -4,16 +4,16 @@ Tick boxes as you go (`[ ]` → `[x]`). GitHub renders them as a progress list.
 **Save evidence** where noted: a screenshot in `images/screenshots/` or a file in the repo.
 Expected numbers for every check are in `docs/PLAN.md` → section 10.
 
-Progress: Phase 0 ✅ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+Progress: Phase 0 ☐ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
 
 ---
 
 ## Phase 0 — Setup (Day 1)
 
 - [x] Create the folder `D:\Learnings\Alteryx-Tableau` and unzip the project files into it.
-- [x] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends ____________.
-- [x] Install **Tableau Desktop Free Edition** (tableau.com → Products → Tableau Desktop → Free Edition).
-- [x] Install **Git for Windows** (git-scm.com) and create a free **GitHub** account.
+- [ ] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends 24 october 2026.
+- [ ] Install **Tableau Desktop Free Edition** (tableau.com → Products → Tableau Desktop → Free Edition).
+- [ ] Install **Git for Windows** (git-scm.com) and create a free **GitHub** account.
 - [x] In Git Bash:
   ```bash
   cd /d/Learnings/Alteryx-Tableau
@@ -30,12 +30,12 @@ Progress: Phase 0 ✅ · 1 ☐ · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6
 
 Goal: find the problems *before* fixing them. Profiling is the step most beginners skip.
 
-- [ ] New workflow `alteryx/00_profiling.yxmd`.
-- [ ] Input one v1 file (`opps_2025_03.csv`) and one v2 file (`opps_2026_03.csv`). In the Input tool set **Code Page = Unicode UTF-8** (otherwise "Müller" becomes "MÃ¼ller").
-- [ ] Add **Browse** tools and open the *Data Profile* view. Compare the column names of v1 vs v2.
-- [ ] For `Stage`, `Department`, `Currency`: **Summarize** → Group By the field + Count. You'll see every spelling.
-- [ ] Input `accounts_export.xlsx`. Notice the 3 junk rows and the footer. Fix with **Options → Start Data Import on Line 4**, then filter out the footer rows (`StartsWith([Account ID], "ACC-")`).
-- [ ] Fill `data/reference/value_aliases.csv` with every raw spelling you find (domains: stage, department, country, industry, company_size, loss_reason, lead_source). Compare with `docs/solutions/value_aliases_complete.csv` only when you're done.
+- [x] New workflow `alteryx/00_profiling.yxmd`.
+- [x] Input one v1 file (`opps_2025_03.csv`) and one v2 file (`opps_2026_03.csv`). In the Input tool set **Code Page = Unicode UTF-8** (otherwise "Müller" becomes "MÃ¼ller").
+- [x] Add **Browse** tools and open the *Data Profile* view. Compare the column names of v1 vs v2.
+- [x] For `Stage`, `Department`, `Currency`: **Summarize** → Group By the field + Count. You'll see every spelling.
+- [x] Input `accounts_export.xlsx`. Notice the 3 junk rows and the footer. Fix with **Options → Start Data Import on Line 4**, then filter out the footer rows (`StartsWith([Account ID], "ACC-")`).
+- [x] Fill `data/reference/value_aliases.csv` with every raw spelling you find (domains: stage, department, country, industry, company_size, loss_reason, lead_source). Compare with `docs/solutions/value_aliases_complete.csv` only when you're done.
 - [ ] 📸 Evidence: `images/screenshots/01_profiling_stage_spellings.png` (Summarize result showing messy stage names).
 
 ---

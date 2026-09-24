@@ -1,0 +1,440 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2026.2" RunE2="T">
+  <Nodes>
+    <Node ToolID="3">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.Tab.Tab">
+        <Position x="0" y="0" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="6">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="354" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IIF([source_file] &gt;= &quot;opps_2025_07.csv&quot;, &quot;v2&quot;, &quot;v1&quot;)" field="crm_version" size="1073741823" type="V_WString" enabled="true" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[crm_version = IIF([source_file] >= "opps_2025_07.csv", "v2", "v1")
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="opportunity_id" name="Opportunity ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="opportunity_name" name="Opportunity Name" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="account_id" name="Account ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="account_name" name="Account Name" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="owner_name" name="Opportunity Owner" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="department_raw" name="Department" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="service_line" name="Service Line" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="stage_raw" name="Stage" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="probability_raw" name="Probability (%)" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="amount_raw" name="Amount" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="currency_raw" name="Currency" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="created_date_raw" name="Created Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="expected_close_raw" name="Expected Close Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="actual_close_raw" name="Actual Close Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="loss_reason_raw" name="Loss Reason" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="lead_source_raw" name="Lead Source" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_activity_raw" name="Last Activity Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_modified_raw" name="Last Modified" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field name="source_file" size="254" source="File: FileName" type="V_WString" />
+            <Field description="opportunity_id" name="Opp_ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="created_date_raw" name="Created_On" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="opportunity_name" name="Opp_Name" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="account_id" name="Acct_ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="owner_email" name="Owner_Email" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="department_raw" name="Business_Unit" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="service_line" name="Offering" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="stage_raw" name="Sales_Stage" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="probability_raw" name="Win_Probability" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="amount_raw" name="Deal_Value" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="currency_raw" name="Deal_Currency" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="expected_close_raw" name="Close_Date_Expected" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="actual_close_raw" name="Close_Date_Actual" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="loss_reason_raw" name="Lost_Reason" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="lead_source_raw" name="Source" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_activity_raw" name="Last_Activity" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="forecast_category_rep" name="Forecast_Category" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_modified_raw" name="Modified_At" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field name="crm_version" size="1073741823" source="Formula: IIF([source_file] &gt;= &quot;opps_2025_07.csv&quot;, &quot;v2&quot;, &quot;v1&quot;)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="7">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="510" y="186" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="19">D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\output\staging\opportunities_unioned.yxdb</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <WriteCompatibleVersion>False</WriteCompatibleVersion>
+            <NoSpatialIndex>False</NoSpatialIndex>
+            <SaveSource>True</SaveSource>
+            <SuppressBlankFile>False</SuppressBlankFile>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>opportunities_unioned.yxdb</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="8">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="510" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\output\ai\raw_union_uncleaned.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+            <SuppressBlankFile>False</SuppressBlankFile>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>raw_union_uncleaned.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="9">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="522" y="390" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_11164_f1a90dada21049bda9a153d64f4c3a54_\Engine_11164_986459a6912b47fbbd5bd92a966f0a79~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="10">
+      <GuiSettings Plugin="mc_ingest_crm_extract.yxmc">
+        <Position x="246" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="ControlParams"><![CDATA[Control Parameter (7)=FullPath
+]]></Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name>mc_ingest_crm_extract (2)</Name>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output6">
+          <RecordInfo>
+            <Field description="opportunity_id" name="Opportunity ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="opportunity_name" name="Opportunity Name" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="account_id" name="Account ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="account_name" name="Account Name" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="owner_name" name="Opportunity Owner" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="department_raw" name="Department" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="service_line" name="Service Line" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="stage_raw" name="Stage" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="probability_raw" name="Probability (%)" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="amount_raw" name="Amount" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="currency_raw" name="Currency" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="created_date_raw" name="Created Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="expected_close_raw" name="Expected Close Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="actual_close_raw" name="Actual Close Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="loss_reason_raw" name="Loss Reason" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="lead_source_raw" name="Lead Source" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_activity_raw" name="Last Activity Date" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_modified_raw" name="Last Modified" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field name="source_file" size="254" source="File: FileName" type="V_WString" />
+            <Field description="opportunity_id" name="Opp_ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="created_date_raw" name="Created_On" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="opportunity_name" name="Opp_Name" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="account_id" name="Acct_ID" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="owner_email" name="Owner_Email" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="department_raw" name="Business_Unit" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="service_line" name="Offering" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="stage_raw" name="Sales_Stage" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="probability_raw" name="Win_Probability" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="amount_raw" name="Deal_Value" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="currency_raw" name="Deal_Currency" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="expected_close_raw" name="Close_Date_Expected" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="actual_close_raw" name="Close_Date_Actual" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="loss_reason_raw" name="Lost_Reason" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="lead_source_raw" name="Source" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_activity_raw" name="Last_Activity" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="forecast_category_rep" name="Forecast_Category" size="254" source="File: (Multiple Sources)" type="V_WString" />
+            <Field description="last_modified_raw" name="Modified_At" size="254" source="File: (Multiple Sources)" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings Macro="macros\mc_ingest_crm_extract.yxmc" />
+    </Node>
+    <Node ToolID="1">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Directory.Directory">
+        <Position x="78" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Directory>D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities</Directory>
+          <FileSpec>*.*</FileSpec>
+          <IncludeSubDirs value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>dir D:\Learnings\Alteryx-Tableau\Alteryx-Tableau\data\raw\crm_exports\opportunities</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="FullPath" size="32767" type="V_WString" />
+            <Field name="Directory" size="32767" type="V_WString" />
+            <Field name="FileName" size="260" type="V_WString" />
+            <Field name="ShortFileName" size="14" type="V_WString" />
+            <Field name="CreationTime" size="19" type="DateTime" />
+            <Field name="LastAccessTime" size="19" type="DateTime" />
+            <Field name="LastWriteTime" size="19" type="DateTime" />
+            <Field name="Size" type="Int64" />
+            <Field name="AttributeArchive" type="Bool" />
+            <Field name="AttributeCompressed" type="Bool" />
+            <Field name="AttributeEncrypted" type="Bool" />
+            <Field name="AttributeHidden" type="Bool" />
+            <Field name="AttributeNormal" type="Bool" />
+            <Field name="AttributeOffline" type="Bool" />
+            <Field name="AttributeReadonly" type="Bool" />
+            <Field name="AttributeReparsePoint" type="Bool" />
+            <Field name="AttributeSparseFile" type="Bool" />
+            <Field name="AttributeSystem" type="Bool" />
+            <Field name="AttributeTemporary" type="Bool" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDirectory" />
+    </Node>
+    <Node ToolID="5">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Action.Action">
+        <Position x="246" y="162" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Update Value</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="4">
+      <GuiSettings Plugin="AlteryxGuiToolkit.Questions.ControlParam.ControlParam">
+        <Position x="186" y="90" width="59" height="59" />
+      </GuiSettings>
+      <Properties>
+        <Configuration />
+        <Annotation DisplayMode="0">
+          <Name />
+          <AnnotationText>Control Parameter (4)</AnnotationText>
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="7" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="8" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="6" Connection="Output" />
+      <Destination ToolID="9" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="10" Connection="Output6" />
+      <Destination ToolID="6" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="1" Connection="Output" />
+      <Destination ToolID="10" Connection="Control" />
+    </Connection>
+    <Connection name="#2">
+      <Origin ToolID="5" Connection="Action" />
+      <Destination ToolID="10" Connection="Action" />
+    </Connection>
+    <Connection name="#1">
+      <Origin ToolID="4" Connection="Question" />
+      <Destination ToolID="5" Connection="Question" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <DefaultTZ value="Local" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <IsTemplate value="False" />
+    <Constants>
+      <Constant>
+        <Namespace>Question</Namespace>
+        <Name>ControlParam.Control Parameter (4)</Name>
+        <Value />
+        <IsNumeric value="False" />
+      </Constant>
+    </Constants>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>01_ingest_crm_extracts</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="b6c875a0-94f9-4bb2-a096-9c9a588e6f98" />
+      <Telemetry>
+        <PreviousWorkflowId value="5011bbac-dd58-4ab9-9b7c-68e2153f02bf" />
+        <OriginWorkflowId value="b2f8f3f1-02e4-486f-b3ac-dcb38a5f2376" />
+      </Telemetry>
+      <PlatformWorkflowId value="" />
+    </MetaInfo>
+    <Events>
+      <Enabled value="False" />
+    </Events>
+    <RuntimeProperties>
+      <Actions>
+        <NoCondition>
+          <Type>NoCondition</Type>
+          <Description>(Always Run)</Description>
+          <True>
+            <Action>
+              <Type>UpdateValue</Type>
+              <Description />
+              <ToolId value="5" />
+              <Mode>Simple</Mode>
+              <Variable />
+              <Replace value="False" />
+              <Destination>2</Destination>
+            </Action>
+          </True>
+        </NoCondition>
+      </Actions>
+      <Questions>
+        <Question>
+          <Type>Tab</Type>
+          <Description>Questions</Description>
+          <Name>Tab (3)</Name>
+          <ToolId value="3" />
+          <Questions>
+            <Question>
+              <Type>ControlParam</Type>
+              <Description>FullPath</Description>
+              <Name>Control Parameter (4)</Name>
+              <ToolId value="4" />
+            </Question>
+          </Questions>
+        </Question>
+      </Questions>
+      <ModuleType>Macro</ModuleType>
+      <MacroCustomHelp value="False" />
+      <MacroDynamicOutputFields value="False" />
+      <MacroImageStd value="39" />
+      <MacroInputs />
+      <MacroOutputs />
+      <BatchMacro>
+        <OutputMode>AllSame</OutputMode>
+        <ControlParams>
+          <ControlParam>
+            <Name>Control Parameter (4)</Name>
+            <Description>FullPath</Description>
+          </ControlParam>
+        </ControlParams>
+      </BatchMacro>
+      <Wiz_CustomHelp value="False" />
+      <Wiz_CustomGraphic value="False" />
+      <Wiz_ShowOutput value="True" />
+      <Wiz_OpenOutputTools>
+        <Tool ToolId="7" Selected="True" />
+        <Tool ToolId="8" Selected="True" />
+        <Tool ToolId="9" Selected="False" />
+        <Tool ToolId="10" Selected="True" />
+      </Wiz_OpenOutputTools>
+      <Wiz_OutputMessage />
+      <Wiz_NoOutputFilesMessage />
+      <Wiz_ChainRunWizard />
+    </RuntimeProperties>
+  </Properties>
+</AlteryxDocument>
