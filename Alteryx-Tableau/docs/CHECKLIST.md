@@ -4,11 +4,11 @@ Tick boxes as you go (`[ ]` → `[x]`). GitHub renders them as a progress list.
 **Save evidence** where noted: a screenshot in `images/screenshots/` or a file in the repo.
 Expected numbers for every check are in `docs/PLAN.md` → section 10.
 
-Progress: Phase 0 ✅ · 1 ✅ · 2 ✅ · 3 ✅ · 4 🟡 · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+Progress: Phase 0 ✅ · 1 ✅ · 2 ✅ · 3 ✅ · 4 🟡 · 5 🟡 · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
 
-> **Status (25 Sep 2026):** Phases 0–3 done. Phase 4 almost done: 4,800 deals, reject log (212), parsing, aliases, currency reconciliation, owners (4,800 with email) and account join (4,790 + 10 ACCOUNT_MISSING) ✅.
-> **Next up:** Phase 4 last step — fill blank currency from `account_currency` (138 → 0), commit. Then Phase 5 (stage history → stints).
-> ⚠️ Alteryx licence ends 24 Oct 2026 — finish Phases 4–8 and 6b before then.
+> **Status (25 Sep 2026):** Phases 0–3 done. Phase 4 built: 5,012 → 4,800 deals, reject log (212), dates/amounts/probability/currency parsed and reconciled to CRM control totals, stages/departments/loss reasons/lead sources standardised, owners matched (4,800 with email), deals linked to master accounts (4,790 + 10 ACCOUNT_MISSING), blank currency filled (138 → 0). Only the owner screenshot + git commit left.
+> **Next up:** Phase 5 parts 1–2 built by hand (Container D: 16,093 events → 12,017 stints, 206 regressed deals). Fix: Multi-Row `next_stage_no` → rows that don't exist = **Null**. Then part 3: per-deal Summarize (max stage, regression count, stage entered date, won_at → fills 48 missing close dates, lost_at_stage) and join back to the 4,800 deals.
+> ⚠️ Alteryx licence ends 24 Oct 2026 — finish Phases 5–8 and 6b before then.
 
 ---
 
@@ -124,26 +124,28 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
   - Pass 3: remaining L output → Find Replace with `value_aliases` domain `owner` (e.g. "Anna Mueller").
   - ✅ Final unmatched = 0. 📸 `05_join_unmatched_owners.png` (the L output before your fix — this screenshot tells the story).
 - [x] Accounts: Join `account_id` to the id→master map. The **L output** = 10 deals pointing to deleted accounts → keep them with `ACCOUNT_MISSING`. Union back.
-- [ ] Blank currency → currency of the account's country.
+- [x] Blank currency → currency of the account's country.
 
+- [x] 📸 `05_join_unmatched_owners.png` (owner pass 1 **L** output, 68 rows — the problem before the fix)
+- [ ] `git commit -m "Phase 4: deals cleaned, owners matched, accounts linked"`
 ---
 
 ## Phase 5 — Stage history → stage stints (Day 6–7)
 
 **Container D**
-- [ ] Input `stage_history_log.csv` → Filter `Field = "Stage"` (16,289 rows).
-- [ ] Standard ID (same formula as Phase 4). Map Old/New values with the stage aliases.
-- [ ] Timestamp: first `Replace(Replace([Changed On], "T", " "), "Z", "")`, then parse `%Y-%m-%d %H:%M:%S` or `%d/%m/%Y %H:%M`.
-- [ ] **Unique** on id + new stage + timestamp **truncated to the minute** (`DateTimeTrim([changed_at], "minute")`) → 16,129. (The DD/MM/YYYY HH:MM format has no seconds, so exact timestamps don't match.) 💡 Note in your README: duplicates only become visible *after* parsing, because the same event was logged with different timestamp formats.
-- [ ] Join to the 4,800 clean deals; the **L output** (36 rows: deleted + test deals) → rejected, reason `ORPHAN_HISTORY`. ✅ 16,093.
-- [ ] Join `stage_rules.csv` to get `stage_order`, `governed_probability` and `stuck_after_days` *for the stage of that stint* (Phase 6b needs them). **Sort** by id, timestamp.
-- [ ] **Multi-Row Formula** (Group By `opportunity_id`) to create `exited_at` = the next row's timestamp:
+- [x] Input `stage_history_log.csv` → Filter `Field = "Stage"` (16,289 rows).
+- [x] Standard ID (same formula as Phase 4). Map Old/New values with the stage aliases.
+- [x] Timestamp: first `Replace(Replace([Changed On], "T", " "), "Z", "")`, then parse `%Y-%m-%d %H:%M:%S` or `%d/%m/%Y %H:%M`.
+- [x] **Unique** on id + new stage + timestamp **truncated to the minute** (`DateTimeTrim([changed_at], "minute")`) → 16,129. (The DD/MM/YYYY HH:MM format has no seconds, so exact timestamps don't match.) 💡 Note in your README: duplicates only become visible *after* parsing, because the same event was logged with different timestamp formats.
+- [x] Join to the 4,800 clean deals; the **L output** (36 rows: deleted + test deals) → rejected, reason `ORPHAN_HISTORY`. ✅ 16,093.
+- [x] Join `stage_rules.csv` to get `stage_order`, `governed_probability` and `stuck_after_days` *for the stage of that stint* (Phase 6b needs them). **Sort** by id, timestamp.
+- [x] **Multi-Row Formula** (Group By `opportunity_id`) to create `exited_at` = the next row's timestamp:
   `[Row+1:changed_at]` — for the last row of each deal it is Null.
-- [ ] For open-stage rows: `exited_at` Null → use `[User.SnapshotDate]` and `is_current = True`. `days_in_stage = DateTimeDiff([exited_at], [changed_at], "days")`.
-- [ ] `exit_type`: Advanced / Regressed / Won / Lost / Still open (compare next row's stage order).
-- [ ] Keep open-stage rows → `pipeline_stage_stints`. ✅ 12,017 stints.
+- [x] For open-stage rows: `exited_at` Null → use `[User.SnapshotDate]` and `is_current = True`. `days_in_stage = DateTimeDiff([exited_at], [changed_at], "days")`.
+- [x] `exit_type`: Advanced / Regressed / Won / Lost / Still open (compare next row's stage order).
+- [x] Keep open-stage rows → `pipeline_stage_stints`. ✅ 12,017 stints.
 - [ ] **Summarize** per deal: `max_stage_reached`, `regression_count` (✅ 206 deals > 0), current-stage entered date, Closed Won timestamp (to fill the 48 missing close dates), stage before Closed Lost (`lost_at_stage`).
-- [ ] 📸 `06_multirow_stints.png` (Multi-Row Formula config + Browse).
+- [x] 📸 `06_multirow_stints.png` (Multi-Row Formula config + Browse).
 
 ---
 

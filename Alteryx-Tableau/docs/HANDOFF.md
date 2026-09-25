@@ -37,9 +37,12 @@ when grounded in my definitions. **Core message:** the analyst's value is the bu
 | `data/reference/…` | FX rates, targets, field mapping v1→v2, stage rules, territories, control totals, alias starter |
 | `scripts/generate_raw_data.py` | Seeded generator (re-running it gives identical data) |
 
-## Current status
-- Folder created. Project files downloaded (zip). **Next step: Phase 0** (unzip into the folder, install tools, `git init` and first commit), then Phase 1 profiling.
-- Nothing built in Alteryx or Tableau yet.
+## Current status (updated 25 Sep 2026)
+- Phases 0–3 done: repo on GitHub, profiling + `value_aliases.csv` (210 rows), batch macro (5,012 rows, 22 cols, UTF-8), sales team (29 AEs, prorated quota) and accounts (765 → 720 masters, coordinates fixed).
+- Phase 4 in progress in `alteryx/02_build_pipeline_mart.yxmd` (Container C): 4,800 deals, reject log (212), parsing and aliases done. Owner matching pass 1 wired (expect J 2,109 / L 68). Next: passes 2–3 + Union, currency reconciliation, account join (10 ACCOUNT_MISSING), blank currency fill.
+- Backup of the workflow: `alteryx/backup/02_build_pipeline_mart_BACKUP_2026-09-25.yxmd`.
+- Alteryx licence ends **24 Oct 2026**.
+- Lessons so far: Filter "Basic" mode compares to literal text (use Custom to compare two fields); Find Replace must be Entire Field + Case Insensitive; a Join needs the key filled on both inputs; close a tab WITHOUT saving after Claude edits a workflow file.
 
 ## Still to do later
 1. Guide me through Phases 0–12 and keep `docs/CHECKLIST.md` ticked and up to date.
