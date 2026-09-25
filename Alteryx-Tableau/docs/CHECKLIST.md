@@ -4,14 +4,14 @@ Tick boxes as you go (`[ ]` → `[x]`). GitHub renders them as a progress list.
 **Save evidence** where noted: a screenshot in `images/screenshots/` or a file in the repo.
 Expected numbers for every check are in `docs/PLAN.md` → section 10.
 
-Progress: Phase 0 ✅ · 1 🟡 · 2 ☐ · 3 ☐ · 4 ☐ · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+Progress: Phase 0 ✅ · 1 🟡 · 2 ✅ · 3 ✅ · 4 🟡 · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
 
 ---
 
 ## Phase 0 — Setup (Day 1)
 
 - [x] Create the folder `D:\Learnings\Alteryx-Tableau` and unzip the project files into it.
-- [x] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends 24 october 2026.
+- [x] Apply for the free Alteryx **SparkED independent learner** licence (90 days) and install Alteryx Designer. Note the start date: licence ends 24 October 2026.
 - [x] Install **Tableau Desktop Free Edition** (tableau.com → Products → Tableau Desktop → Free Edition).
 - [x] Install **Git for Windows** (git-scm.com) and create a free **GitHub** account.
 - [x] In Git Bash:
@@ -47,8 +47,8 @@ Why a batch macro? A wildcard Input (`opps_*.csv`) fails or scrambles columns wh
 **Build the macro `alteryx/macros/mc_ingest_crm_extract.yxmc`:**
 - [x] New workflow. Add **Input Data** pointing at any one opportunities CSV (UTF-8, *Output File Name as Field → File Name only*).
 - [x] Add **Input Data** for `data/reference/crm_field_mapping_v1_v2.csv`.
-- [ ] Add **Dynamic Rename**: left = the opportunities file, right = the mapping file. Mode **Take Field Names from Right Input Rows**, Old = `source_field`, New = `standard_field`.
-- [ ] Add a **Select** to rename `FileName` to `source_file`, and make every field `V_WString` (so all iterations stack cleanly).
+- [x] Add **Dynamic Rename**: left = the opportunities file, right = the mapping file. Mode **Take Field Names from Right Input Rows**, Old = `source_field`, New = `standard_field`.
+- [x] Add a **Select** to rename `FileName` to `source_file`, and make every field `V_WString` (so all iterations stack cleanly).
 - [x] Add **Macro Output** (Interface palette).
 - [x] Add **Control Parameter** (Interface palette, label it `File Path`). Connect it to the file Input tool; an **Action** tool appears. Configure the Action: *Update Input Data value → replace the full file path*.
 - [x] Workflow Configuration → Workflow tab → type **Batch Macro**. Save as `.yxmc`.
@@ -57,11 +57,11 @@ Why a batch macro? A wildcard Input (`opps_*.csv`) fails or scrambles columns wh
 **Build `alteryx/01_ingest_crm_extracts.yxmd`:**
 - [x] **Directory** tool → folder `data\raw\crm_exports\opportunities`, pattern `opps_*.csv`.
 - [x] Right-click canvas → Insert → Macro → your batch macro. Connect Directory to its control-parameter input (¿ icon), choose `FullPath`.
-- [ ] **Formula**: `crm_version = IIF([source_file] >= "opps_2025_07.csv", "v2", "v1")`.
-- [ ] Output to `data/output/staging/opportunities_unioned.yxdb` **and** `data/output/ai/raw_union_uncleaned.csv` (used in the AI experiment).
-- [ ] ✅ Check: 5,012 rows, 24 distinct `source_file` values.
-- [ ] 📸 `02_batch_macro_inside.png` (macro canvas) and `03_ingest_workflow.png` (Directory → macro).
-- [ ] `git commit -m "Batch macro ingests 24 CRM extracts with schema drift"`
+- [x] **Formula**: `crm_version = IIF([source_file] >= "opps_2025_07", "v2", "v1")` (FileName has no ".csv" extension).
+- [x] Output to `data/output/staging/opportunities_unioned.yxdb` **and** `data/output/ai/raw_union_uncleaned.csv` (used in the AI experiment).
+- [x] ✅ Check: 5,012 rows, 24 distinct `source_file` values.
+- [x] 📸 `02_batch_macro_inside.png` (macro canvas) and `03_ingest_workflow.png` (Directory → macro).
+- [x] `git commit -m "Batch macro ingests 24 CRM extracts with schema drift"`
 
 ---
 
@@ -70,36 +70,36 @@ Why a batch macro? A wildcard Input (`opps_*.csv`) fails or scrambles columns wh
 Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workflow Configuration → Workflow → Constants → `SnapshotDate = 2026-09-15`. Use it everywhere as `[User.SnapshotDate]`.
 
 **Container A · Sales team**
-- [ ] Input roster (UTF-8) → **Data Cleansing** (trim leading/trailing whitespace).
-- [ ] **Find Replace** on `Department` against `value_aliases.csv` (filtered to domain = department, *entire field*, *case insensitive*, append `standard_value`).
-- [ ] Parse `Hire Date`, `Leave Date` (`DateTimeParse([Hire Date], "%d/%m/%Y")`).
-- [ ] `owner_is_active = IsNull([leave_date]) OR [leave_date] > [User.SnapshotDate]`.
-- [ ] Keep AEs (`Role = "Account Executive"`) as the owner lookup. Add a matching key `initial_key = Left([Full Name],1) + ". " + <surname>` for pass-2 owner matching.
-- [ ] Prorated quota for FY2026 (see business_definitions §4).
+- [x] Input roster (UTF-8) → **Data Cleansing** (trim leading/trailing whitespace).
+- [x] **Find Replace** on `Department` against `value_aliases.csv` (filtered to domain = department, *entire field*, *case insensitive*, append `standard_value`).
+- [x] Parse `Hire Date`, `Leave Date` (`DateTimeParse([Hire Date], "%d/%m/%Y")`).
+- [x] `owner_is_active = IsNull([leave_date]) OR [leave_date] > [User.SnapshotDate]`.
+- [x] Keep AEs (`Role = "Account Executive"`) as the owner lookup. Add a matching key `initial_key = Left([Full Name],1) + ". " + <surname>` for pass-2 owner matching.
+- [x] Prorated quota for FY2026 (see business_definitions §4).
 
 **Container B · Accounts**
-- [ ] Input xlsx (start on line 4) → Filter out footer rows.
-- [ ] Find Replace: country → `country_code`; industry; company size. Then Join to `country_region_mapping.csv` on `country_code`. ✅ Check: the Join's **L output is empty** (every country mapped).
-- [ ] **Formula** to build the dedupe key (or build the stretch **standard macro** `mc_normalize_company_name.yxmc` and reuse it):
+- [x] Input xlsx (start on line 4) → Filter out footer rows.
+- [x] Find Replace: country → `country_code`; industry; company size. Then Join to `country_region_mapping.csv` on `country_code`. ✅ Check: the Join's **L output is empty** (every country mapped).
+- [x] **Formula** to build the dedupe key (or build the stretch **standard macro** `mc_normalize_company_name.yxmc` and reuse it):
   ```
   REGEX_Replace(
     REGEX_Replace(Trim(REGEX_Replace(Uppercase([Account Name]), "\s+", " ")), "\.+$", ""),
     "\s+(GMBH|AG|SE|SA|B\.V|N\.V|NV|S\.A|S\.À R\.L|LTD|PLC|DAC|SAS|AB|A/S|APS|AS|ASA|OY|OYJ|S\.L|S\.P\.A|S\.R\.L|LDA|SP\. Z O\.O|A\.S|S\.R\.O)$", "")
   ```
-- [ ] **Summarize**: group by `name_key` + `country_code`, `Min(account_id)` = `master_account_id`. Join back → an `account_id → master_account_id` map (765 rows). Keep the master rows as the account dimension (720 rows) with a clean display name (Trim + the master's name).
-- [ ] Coordinates: swap if `[Latitude] < 34 OR [Latitude] > 72` and longitude is in 34–72. For blanks, Summarize average lat/long by city + country and fill.
-- [ ] ✅ Check: 765 → 720 accounts; 0 accounts without coordinates.
-- [ ] 📸 `04_account_dedup.png` (Browse showing two records collapsing into one master).
+- [x] **Summarize**: group by `name_key` + `country_code`, `Min(account_id)` = `master_account_id`. Join back → an `account_id → master_account_id` map (765 rows). Keep the master rows as the account dimension (720 rows) with a clean display name (Trim + the master's name).
+- [x] Coordinates: swap if `[Latitude] < 34 OR [Latitude] > 72` and longitude is in 34–72. For blanks, Summarize average lat/long by city + country and fill.
+- [x] ✅ Check: 765 → 720 accounts; 0 accounts without coordinates.
+- [x] 📸 `04_account_dedup.png` (Browse showing two records collapsing into one master).
 
 ---
 
 ## Phase 4 — Clean the opportunities (Day 4–6)
 
 **Container C · Opportunities** (input: `opportunities_unioned.yxdb`)
-- [ ] Standard ID: `"OPP-" + PadLeft(REGEX_Replace([opportunity_id], "[^0-9]", ""), 6, "0")`.
-- [ ] **Unique** on all fields → removes exact duplicates. Send the D output to the rejected log with reason `EXACT_DUPLICATE`. ✅ 75.
-- [ ] Filter test records (`Contains([opportunity_name], "TEST")` or owner "CRM Admin" or account `ACC-00000`) → rejected, reason `TEST_RECORD`. ✅ 6.
-- [ ] Parse `last_modified_raw` (two formats), **Sort** by id + last_modified descending, **Unique** on id → keeps the latest version. Duplicates → rejected, reason `OLDER_VERSION`. ✅ 131 → **4,800 deals**.
+- [x] Standard ID: `"OPP-" + PadLeft(REGEX_Replace([opportunity_id], "[^0-9]", ""), 6, "0")`.
+- [x] **Unique** on all fields → removes exact duplicates. Send the D output to the rejected log with reason `EXACT_DUPLICATE`. ✅ 75.
+- [x] Filter test records (`Contains([opportunity_name], "TEST")` or owner "CRM Admin" or account `ACC-00000`) → rejected, reason `TEST_RECORD`. ✅ 6.
+- [x] Parse `last_modified_raw` (two formats), **Sort** by id + last_modified descending, **Unique** on id → keeps the latest version. Duplicates → rejected, reason `OLDER_VERSION`. ✅ 131 → **4,800 deals**.
 - [ ] **Multi-Field Formula** on all `*_raw` date fields (created, expected close, actual close, last activity), output type Date:
   ```
   IF REGEX_Match([_CurrentField_], "\d{4}-\d{2}-\d{2}") THEN DateTimeParse([_CurrentField_], "%Y-%m-%d")
