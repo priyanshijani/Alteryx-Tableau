@@ -4,7 +4,11 @@ Tick boxes as you go (`[ ]` → `[x]`). GitHub renders them as a progress list.
 **Save evidence** where noted: a screenshot in `images/screenshots/` or a file in the repo.
 Expected numbers for every check are in `docs/PLAN.md` → section 10.
 
-Progress: Phase 0 ✅ · 1 🟡 · 2 ✅ · 3 ✅ · 4 🟡 · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+Progress: Phase 0 ✅ · 1 ✅ · 2 ✅ · 3 ✅ · 4 🟡 · 5 ☐ · 6 ☐ · 6b ☐ · 7 ☐ · 8 ☐ · 9 ☐ · 10 ☐ · 11 ☐ · 12 ☐
+
+> **Status (25 Sep 2026):** Phases 0–3 done. Phase 4 almost done: 4,800 deals, reject log (212), parsing, aliases, currency reconciliation, owners (4,800 with email) and account join (4,790 + 10 ACCOUNT_MISSING) ✅.
+> **Next up:** Phase 4 last step — fill blank currency from `account_currency` (138 → 0), commit. Then Phase 5 (stage history → stints).
+> ⚠️ Alteryx licence ends 24 Oct 2026 — finish Phases 4–8 and 6b before then.
 
 ---
 
@@ -36,7 +40,7 @@ Goal: find the problems *before* fixing them. Profiling is the step most beginne
 - [x] For `Stage`, `Department`, `Currency`: **Summarize** → Group By the field + Count. You'll see every spelling.
 - [x] Input `accounts_export.xlsx`. Notice the 3 junk rows and the footer. Fix with **Options → Start Data Import on Line 4**, then filter out the footer rows (`StartsWith([Account ID], "ACC-")`).
 - [x] Fill `data/reference/value_aliases.csv` with every raw spelling you find (domains: stage, department, country, industry, company_size, loss_reason, lead_source). Compare with `docs/solutions/value_aliases_complete.csv` only when you're done.
-- [ ] 📸 Evidence: `images/screenshots/01_profiling_stage_spellings.png` (Summarize result showing messy stage names).
+- [x] 📸 Evidence: `images/screenshots/01_profiling_stage_spellings.png` (Summarize result showing messy stage names).
 
 ---
 
@@ -100,7 +104,7 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
 - [x] **Unique** on all fields → removes exact duplicates. Send the D output to the rejected log with reason `EXACT_DUPLICATE`. ✅ 75.
 - [x] Filter test records (`Contains([opportunity_name], "TEST")` or owner "CRM Admin" or account `ACC-00000`) → rejected, reason `TEST_RECORD`. ✅ 6.
 - [x] Parse `last_modified_raw` (two formats), **Sort** by id + last_modified descending, **Unique** on id → keeps the latest version. Duplicates → rejected, reason `OLDER_VERSION`. ✅ 131 → **4,800 deals**.
-- [ ] **Multi-Field Formula** on all `*_raw` date fields (created, expected close, actual close, last activity), output type Date:
+- [x] **Multi-Field Formula** on all `*_raw` date fields (created, expected close, actual close, last activity), output type Date:
   ```
   IF REGEX_Match([_CurrentField_], "\d{4}-\d{2}-\d{2}") THEN DateTimeParse([_CurrentField_], "%Y-%m-%d")
   ELSEIF REGEX_Match([_CurrentField_], "\d{2}/\d{2}/\d{4}") THEN DateTimeParse([_CurrentField_], "%d/%m/%Y")
@@ -108,18 +112,18 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
   ELSE Null() ENDIF
   ```
   (Assumption to document: all slash dates are European DD/MM/YYYY.)
-- [ ] Amount: `IIF(IsEmpty(Trim([amount_raw])), Null(), ToNumber(REGEX_Replace([amount_raw], "[^0-9.\-]", "")))`.
-- [ ] Probability: strip `%`; if the raw value contains "." and the number ≤ 1, multiply by 100.
-- [ ] Currency: `Uppercase(Trim())`, `€` → `EUR`. Keep blanks for now.
-- [ ] Find Replace (value_aliases): stage, department, loss reason, lead source. Blank service line → "Unspecified".
-- [ ] ✅ **Reconcile parsing:** Summarize `amount_local` by *raw* currency (after upper-casing and € → EUR) and compare with `crm_control_totals.csv`. Every currency must match to the cent — if not, your amount parser missed a format.
-- [ ] Owners (the classic Join lesson):
+- [x] Amount: `IIF(IsEmpty(Trim([amount_raw])), Null(), ToNumber(REGEX_Replace([amount_raw], "[^0-9.\-]", "")))`.
+- [x] Probability: strip `%`; if the raw value contains "." and the number ≤ 1, multiply by 100.
+- [x] Currency: `Uppercase(Trim())`, `€` → `EUR`. Keep blanks for now.
+- [x] Find Replace (value_aliases): stage, department, loss reason, lead source. Blank service line → "Unspecified".
+- [x] ✅ **Reconcile parsing:** Summarize `amount_local` by *raw* currency (after upper-casing and € → EUR) and compare with `crm_control_totals.csv`. Every currency must match to the cent — if not, your amount parser missed a format.
+- [x] Owners (the classic Join lesson):
   - v2: `owner_email = Lowercase(Trim([owner_email]))`.
   - v1 pass 1: reorder "Last, First", trim, collapse double spaces → Join to roster on name (make both sides lowercase).
   - Pass 2: take the **L output** (unmatched) → Join on `initial_key`.
   - Pass 3: remaining L output → Find Replace with `value_aliases` domain `owner` (e.g. "Anna Mueller").
   - ✅ Final unmatched = 0. 📸 `05_join_unmatched_owners.png` (the L output before your fix — this screenshot tells the story).
-- [ ] Accounts: Join `account_id` to the id→master map. The **L output** = 10 deals pointing to deleted accounts → keep them with `ACCOUNT_MISSING`. Union back.
+- [x] Accounts: Join `account_id` to the id→master map. The **L output** = 10 deals pointing to deleted accounts → keep them with `ACCOUNT_MISSING`. Union back.
 - [ ] Blank currency → currency of the account's country.
 
 ---
@@ -130,7 +134,7 @@ Start `alteryx/02_build_pipeline_mart.yxmd`. Add a **workflow constant**: Workfl
 - [ ] Input `stage_history_log.csv` → Filter `Field = "Stage"` (16,289 rows).
 - [ ] Standard ID (same formula as Phase 4). Map Old/New values with the stage aliases.
 - [ ] Timestamp: first `Replace(Replace([Changed On], "T", " "), "Z", "")`, then parse `%Y-%m-%d %H:%M:%S` or `%d/%m/%Y %H:%M`.
-- [ ] **Unique** on id + new stage + parsed timestamp → 16,129. 💡 Note in your README: duplicates only become visible *after* parsing, because the same event was logged with different timestamp formats.
+- [ ] **Unique** on id + new stage + timestamp **truncated to the minute** (`DateTimeTrim([changed_at], "minute")`) → 16,129. (The DD/MM/YYYY HH:MM format has no seconds, so exact timestamps don't match.) 💡 Note in your README: duplicates only become visible *after* parsing, because the same event was logged with different timestamp formats.
 - [ ] Join to the 4,800 clean deals; the **L output** (36 rows: deleted + test deals) → rejected, reason `ORPHAN_HISTORY`. ✅ 16,093.
 - [ ] Join `stage_rules.csv` to get `stage_order`, `governed_probability` and `stuck_after_days` *for the stage of that stint* (Phase 6b needs them). **Sort** by id, timestamp.
 - [ ] **Multi-Row Formula** (Group By `opportunity_id`) to create `exited_at` = the next row's timestamp:
