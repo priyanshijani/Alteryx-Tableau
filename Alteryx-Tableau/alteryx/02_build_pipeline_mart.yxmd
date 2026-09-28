@@ -1334,7 +1334,7 @@ hire_date = DateTimeParse([Hire Date], "%d/%m/%Y")...</DefaultAnnotationText>
           </GuiSettings>
           <Properties>
             <Configuration>
-              <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_23732_bed6e536c22942e1b50e170105f852b9_\Engine_23732_f3b75b0b576442dfb5f0c394a1ff41a1~.yxdb</TempFile>
+              <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_7568_ec917c508eef40e999fc83ca298a6c14_\Engine_7568_7c6c9a82900646c389f7fcbb893f5503~.yxdb</TempFile>
               <TempFileDataProfiling />
               <Layout>
                 <ViewMode>Single</ViewMode>
@@ -1362,7 +1362,7 @@ hire_date = DateTimeParse([Hire Date], "%d/%m/%Y")...</DefaultAnnotationText>
           </GuiSettings>
           <Properties>
             <Configuration>
-              <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_23732_bed6e536c22942e1b50e170105f852b9_\Engine_23732_e1559d3923cf4982ad1296f9caedb23f~.yxdb</TempFile>
+              <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_7568_ec917c508eef40e999fc83ca298a6c14_\Engine_7568_a6a49e1cd1d9428f8a151fdebf225a51~.yxdb</TempFile>
               <TempFileDataProfiling />
               <Layout>
                 <ViewMode>Single</ViewMode>
@@ -1944,7 +1944,7 @@ Longitude = IIF(I...</DefaultAnnotationText>
           </GuiSettings>
           <Properties>
             <Configuration>
-              <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_23732_bed6e536c22942e1b50e170105f852b9_\Engine_23732_fb97af172ee346baac772ac97338676b~.yxdb</TempFile>
+              <TempFile>C:\Users\PRIYAN~1.JAN\AppData\Local\Temp\Alteryx\Engine_7568_ec917c508eef40e999fc83ca298a6c14_\Engine_7568_b18b6b66dd1a4ac5b44804e9c399a5da~.yxdb</TempFile>
               <TempFileDataProfiling />
               <Layout>
                 <ViewMode>Single</ViewMode>
@@ -2762,7 +2762,7 @@ won_ts = IIF([stage] = "C...</DefaultAnnotationText>
                 <Field field="opportunity_id" />
               </JoinInfo>
               <JoinInfo connection="Right">
-                <Field field="Opportunity ID" />
+                <Field field="opportunity id" />
               </JoinInfo>
               <SelectConfiguration>
                 <Configuration outputConnection="Join">
@@ -2790,7 +2790,7 @@ won_ts = IIF([stage] = "C...</DefaultAnnotationText>
           <Properties>
             <Configuration>
               <FormulaFields>
-                <FormulaField expression="IIF(IsNull([actual_close_raw]) AND [stage] = &quot;Closed Won&quot;, ToDate([won_at]), [actual_close_raw])" field="actual_close_date" size="1073741823" type="V_WString" enabled="true" />
+                <FormulaField expression="IIF(IsNull([actual_close_raw]) AND [stage] = &quot;Closed Won&quot;, ToDate([won_at]), [actual_close_raw])" field="actual_close_date" size="10" type="Date" enabled="true" />
               </FormulaFields>
             </Configuration>
             <Annotation DisplayMode="0">
@@ -3335,9 +3335,9 @@ won_ts = IIF([stage] = "C...</DefaultAnnotationText>
         <Description />
         <File />
       </Example>
-      <WorkflowId value="e947e991-5d34-4c60-9320-ded4a988d59e" />
+      <WorkflowId value="ccac281a-de2c-4e91-8ee7-a2db2ebf9819" />
       <Telemetry>
-        <PreviousWorkflowId value="5518d477-521c-4c7f-ba97-71e2378e2765" />
+        <PreviousWorkflowId value="87c0a21e-1726-4afd-8a77-b242f87d7aa3" />
         <OriginWorkflowId value="ba57abf6-7595-490d-9f1a-4acbee87b4e0" />
       </Telemetry>
       <PlatformWorkflowId value="" />
